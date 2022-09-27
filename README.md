@@ -4,8 +4,7 @@ This package has the model file for the Navvis robot. To use the file, write the
 <br>
 <code>
 cd </package installation location> 
-</code>
-
+</code> <br>
 <code>
 source /opt/ros/noetic/setup.bash<br>
 source devel/setup.bash<br>
