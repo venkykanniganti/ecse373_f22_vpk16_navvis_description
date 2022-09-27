@@ -4,8 +4,7 @@ This package has the model file for the Navvis robot. To use the file, write the
 <br>
 <code>
 cd </package installation location> 
-</code> <br>
-<code>
+<br>
 source /opt/ros/noetic/setup.bash<br>
 source devel/setup.bash<br>
 catkin_make<br>
