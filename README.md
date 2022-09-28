@@ -34,5 +34,11 @@ roslaunch rviz_config_launcher.launch &
 roslaunch rviz_config_launcher.launch use_xacro:=true &
 </code> <br>
 <code>
+#Write this to opt out of running gui
+</code> <br>
+<code>
+roslaunch rviz_config_launcher.launch use_gui:=false &
+</code> <br>
+<code>
 #Rviz launches and shows file
 </code>

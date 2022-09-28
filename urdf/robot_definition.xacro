@@ -64,8 +64,22 @@ robot name="navvis">
 			</geometry>
 		</collision>
 	</link>
+	<link name="wheel_center">
+		<visual>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+			<geometry>
+				<cylinder radius="0.15" length = '0.05'/>
+			</geometry>
+		</visual>
+		<collision>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+			<geometry>
+				<cylinder radius="0.15" length = '0.05'/>
+			</geometry>
+		</collision>
+	</link>
 	<xacro:macro name="xacro_name" params="side reflect">
-		<link name="wheel_left">
+		<link name="wheel_${side}">
 			<visual>
 				<geometry>
 					<cylinder radius="0.2" length = '0.05'/>
@@ -77,6 +91,13 @@ robot name="navvis">
 				</geometry>
 			</collision>
 		</link>
+		<joint name = 'base_wheel_${side}_joint' type ="continuous">
+			<parent link = 'base'/>
+			<child link='wheel_${side}'/>
+			<origin xyz="-0.1 ${reflect*0.4} 0.0" rpy="-${pi/2} 0.0 0.0"/>
+			<axis xyz = '0 0 1'/>
+			<limit effort='30' velocity='5'/>
+		</joint>
 	</xacro:macro>
 	<joint name = 'base_laser_vert_bottom_joint' type = "fixed">
 		<parent link = 'base'/>
@@ -98,13 +119,13 @@ robot name="navvis">
 		<child link='laser_horiz'/>
 		<origin xyz="0.2325 0.0001 1.9201" rpy="0.0012 0.1146 -0.0015"/>
 	</joint>
-	<xacro:macro name="xacro_name" params="side reflect">
-		<joint name = 'wheel_left_joint' type = "fixed">
-			<parent link = 'base'/>
-			<child link='wheel_left'/>
-			<origin xyz="-0.1 0.4 0.0" rpy="-1.57 0.0 0.0"/>
-		</joint>
-	</xacro:macro>
+	<joint name = 'base_wheel_center_joint' type = "continuous">
+		<parent link = 'base'/>
+		<child link='wheel_center'/>
+		<origin xyz="0.1 0.0 -0.05" rpy="-1.57 0.0 0.0"/>
+		<axis xyz = '0 0 1'/>
+		<limit effort='30' velocity='5'/>
+	</joint>
 	<xacro:xacro_name side="left" reflect="1" />
 	<xacro:xacro_name side="right" reflect="-1" />
 </robot>
